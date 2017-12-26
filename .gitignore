@@ -1,0 +1,6 @@
+a.out
+*.o
+test*
+ft_ls
+libft.a
+.DS_Store
