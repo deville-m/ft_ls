@@ -6,7 +6,7 @@
 /*   By: mdeville <mdeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/14 16:37:24 by mdeville          #+#    #+#             */
-/*   Updated: 2017/12/26 17:30:36 by mdeville         ###   ########.fr       */
+/*   Updated: 2017/12/26 19:27:48 by mdeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ t_filelist				*pop_elem(t_filelist **head);
 void					rotate(t_filelist **head);
 void					r_rotate(t_filelist **head);
 void					print_list(const int fd, t_filelist *head);
-void					dir_walk(const char *path, t_option option);
+void					dir_walk(char *path, t_option option);
 void					ft_ls(t_filelist *list, t_option option);
 void					ft_ls_input(t_filelist *list, t_option option);
 void					ls_err(const char *file);

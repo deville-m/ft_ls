@@ -6,7 +6,7 @@
 /*   By: mdeville <mdeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/15 16:12:49 by mdeville          #+#    #+#             */
-/*   Updated: 2017/12/18 18:47:19 by mdeville         ###   ########.fr       */
+/*   Updated: 2017/12/26 18:18:28 by mdeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static char	need_arg(int argc,
 		if (g_opterr)
 			ft_fprintf(2,
 					"%s: option requires an argument -- %c\n",
-					argv[0], g_optopt);
+					"ls", g_optopt);
 		return ('?');
 	}
 	else
@@ -77,7 +77,7 @@ int			ft_getopt(int argc, char *const argv[], const char *opstring)
 		if (!*place)
 			++g_optind;
 		if (g_opterr && *opstring != ':')
-			ft_fprintf(2, "%s: illegal option -- %c\n", argv[0], g_optopt);
+			ft_fprintf(2, "%s: illegal option -- %c\n", "ls", g_optopt);
 		return ('?');
 	}
 	if (*++oli != ':')

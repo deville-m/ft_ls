@@ -6,7 +6,7 @@
 /*   By: mdeville <mdeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/19 19:01:13 by mdeville          #+#    #+#             */
-/*   Updated: 2017/12/26 17:32:01 by mdeville         ###   ########.fr       */
+/*   Updated: 2017/12/26 19:46:20 by mdeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ void				ft_ls_input(t_filelist *list, t_option option)
 		curr = pop_elem(&list);
 		print_file(curr, option, max);
 		((curr->stat.st_mode & S_IFMT) == S_IFDIR) ? add_back(&dirs, curr) :
-			add_back(&files, curr);
+			add_elem(&files, curr);
 	}
 	del_list(&files);
 	iterate_dir(dirs, option);

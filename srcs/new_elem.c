@@ -6,7 +6,7 @@
 /*   By: mdeville <mdeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/12 11:52:07 by mdeville          #+#    #+#             */
-/*   Updated: 2017/12/21 12:47:46 by mdeville         ###   ########.fr       */
+/*   Updated: 2017/12/26 19:22:52 by mdeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_filelist			*new_elem(char *path)
 		return (NULL);
 	if (lstat(path, &res->stat) < 0)
 	{
-		ls_err(path);
+		ls_err(ft_basename(path));
 		free(path);
 		free(res);
 		return (NULL);

@@ -6,7 +6,7 @@
 /*   By: mdeville <mdeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/18 15:29:17 by mdeville          #+#    #+#             */
-/*   Updated: 2017/12/26 17:14:39 by mdeville         ###   ########.fr       */
+/*   Updated: 2017/12/26 20:58:46 by mdeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,13 @@ int			parse_option(int argc, char **argv, t_option *option)
 	{
 		if (!set_option(option, c))
 		{
-			ft_fprintf(2, "usage: ./ft_ls [-1aifmnlrtuR] [file ...]\n");
+			ft_fprintf(2, "usage: ls [-1aifmnlrtuR] [file ...]\n");
 			return (0);
 		}
 		if (option->f)
 			option->a = 1;
+		if (option->n)
+			option->l = 1;
 	}
 	return (g_optind);
 }

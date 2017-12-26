@@ -6,7 +6,7 @@
 /*   By: mdeville <mdeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/19 18:32:32 by mdeville          #+#    #+#             */
-/*   Updated: 2017/12/26 17:29:26 by mdeville         ###   ########.fr       */
+/*   Updated: 2017/12/26 19:52:46 by mdeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,10 @@ void				multiple_arg(t_filelist *list, t_option option)
 		if ((curr->stat.st_mode & S_IFMT) == S_IFDIR)
 			add_back(&dirs, curr);
 		else
-			add_back(&files, curr);
+			add_elem(&files, curr);
 		curr = curr->next;
 	}
 	ft_ls_input(files, option);
-	sort_filelist(&list, option);
+	sort_filelist(&dirs, option);
 	iterate_dir(dirs, files, option);
 }

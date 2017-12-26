@@ -6,7 +6,7 @@
 /*   By: mdeville <mdeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/22 13:17:21 by mdeville          #+#    #+#             */
-/*   Updated: 2017/12/22 19:25:14 by mdeville         ###   ########.fr       */
+/*   Updated: 2017/12/26 20:45:05 by mdeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,10 @@ static char		*get_rdev(t_filelist *file)
 
 void			get_size(t_filelist *file)
 {
-	if ((file->stat.st_mode & S_IFMT) == S_IFCHR)
+	mode_t type;
+
+	type = file->stat.st_mode & S_IFMT;
+	if (type == S_IFCHR || type == S_IFBLK)
 		file->lformat.size = get_rdev(file);
 	else
 		file->lformat.size = ft_utoa(file->stat.st_size);
