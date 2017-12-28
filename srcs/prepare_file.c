@@ -6,7 +6,7 @@
 /*   By: mdeville <mdeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/22 11:51:53 by mdeville          #+#    #+#             */
-/*   Updated: 2017/12/22 21:48:40 by mdeville         ###   ########.fr       */
+/*   Updated: 2017/12/28 17:09:18 by mdeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,15 +46,10 @@ static void	get_date(t_filelist *file, t_option option, char *res)
 
 static void	get_exec(mode_t mode, char *tmp, mode_t exec, mode_t field)
 {
-	if (mode & S_IFDIR)
-		*tmp = (mode & exec) ? 'x' : '-';
+	if (mode & field)
+		*tmp = (mode & exec) ? 's' : 'S';
 	else
-	{
-		if (mode & field)
-			*tmp = (mode & exec) ? 's' : 'S';
-		else
-			*tmp = (mode & exec) ? 'x' : '-';
-	}
+		*tmp = (mode & exec) ? 'x' : '-';
 }
 
 static void	get_permissions(mode_t mode, char *tmp)
