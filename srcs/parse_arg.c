@@ -6,7 +6,7 @@
 /*   By: mdeville <mdeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/18 19:30:51 by mdeville          #+#    #+#             */
-/*   Updated: 2017/12/26 19:44:07 by mdeville         ###   ########.fr       */
+/*   Updated: 2017/12/28 16:55:04 by mdeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ t_filelist			*parse_arg(int optind,
 							t_option option)
 {
 	t_filelist	*res;
+	struct stat tmp;
 
 	if (optind >= argc)
 		return (new_elem(ft_strdup(".")));
@@ -50,6 +51,8 @@ t_filelist			*parse_arg(int optind,
 	while (optind < argc)
 	{
 		if (option.l)
+			add_elem(&res, new_arg(ft_strdup(argv[optind++]), lstat));
+		else if (stat(argv[optind], &tmp) < 0 && lstat(argv[optind], &tmp) == 0)
 			add_elem(&res, new_arg(ft_strdup(argv[optind++]), lstat));
 		else
 			add_elem(&res, new_arg(ft_strdup(argv[optind++]), stat));
