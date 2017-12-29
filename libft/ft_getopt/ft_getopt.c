@@ -6,86 +6,42 @@
 /*   By: mdeville <mdeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/15 16:12:49 by mdeville          #+#    #+#             */
-/*   Updated: 2017/12/26 18:18:28 by mdeville         ###   ########.fr       */
+/*   Updated: 2017/12/29 15:13:55 by mdeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_getopt.h"
 #include "ft_printf.h"
 
-char		*g_optarg = NULL;
+int			g_optopt = '?';
 int			g_optind = 1;
 int			g_opterr = 1;
-int			g_optopt = '?';
 
-static int	init_static(int argc, char *const argv[], char **tmp)
-{
-	if (!**tmp)
-	{
-		if (g_optind >= argc || *(*tmp = argv[g_optind]) != '-')
-		{
-			*tmp = "";
-			return (-1);
-		}
-		if ((*tmp)[1] && *++(*tmp) == '-')
-		{
-			++g_optind;
-			*tmp = "";
-			return (-1);
-		}
-	}
-	return (1);
-}
-
-static char	need_arg(int argc,
-		char *const argv[],
-		char **tmp,
-		const char *opstring)
-{
-	if (**tmp)
-		g_optarg = *tmp;
-	else if (argc <= ++g_optind)
-	{
-		*tmp = "";
-		if (*opstring == ':')
-			return (':');
-		if (g_opterr)
-			ft_fprintf(2,
-					"%s: option requires an argument -- %c\n",
-					"ls", g_optopt);
-		return ('?');
-	}
-	else
-		g_optarg = argv[g_optind];
-	*tmp = "";
-	++g_optind;
-	return (g_optopt);
-}
-
-int			ft_getopt(int argc, char *const argv[], const char *opstring)
+int		ft_getopt(int argc, char *const argv[], const char *optstring)
 {
 	static char	*place = "";
-	char		*oli;
+	char		*tmp;
 
-	if (init_static(argc, argv, &place) == -1)
-		return (-1);
-	if ((g_optopt = *place++) == ':'
-		|| !(oli = ft_strchr(opstring, g_optopt)))
+	if (!*place)
 	{
-		if (g_optopt == '-')
+		if (g_optind >= argc || *(place = argv[g_optind]) != '-'
+			|| *(place + 1) == '\0')
 			return (-1);
-		if (!*place)
-			++g_optind;
-		if (g_opterr && *opstring != ':')
-			ft_fprintf(2, "%s: illegal option -- %c\n", "ls", g_optopt);
+		if (*place == '-' && *++place == '-')
+		{
+			place = "";
+			g_optind += 1;
+			return (-1);
+		}
+	}
+	g_optopt = *place++;
+	if (!*place)
+		++g_optind;
+	if (!(tmp = ft_strchr(optstring, g_optopt)))
+	{
+		if (g_opterr && !tmp)
+			ft_fprintf(2, "ls : illegal option -- %c\n", g_optopt);
 		return ('?');
 	}
-	if (*++oli != ':')
-	{
-		g_optarg = NULL;
-		if (!*place)
-			++g_optind;
-		return (g_optopt);
-	}
-	return (need_arg(argc, argv, &place, opstring));
+	return (g_optopt);
 }

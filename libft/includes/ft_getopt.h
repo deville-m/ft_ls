@@ -6,7 +6,7 @@
 /*   By: mdeville <mdeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/15 16:04:46 by mdeville          #+#    #+#             */
-/*   Updated: 2017/12/18 17:05:46 by mdeville         ###   ########.fr       */
+/*   Updated: 2017/12/29 14:48:06 by mdeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include "libft.h"
 
-extern char	*g_optarg;
 extern int	g_optind;
 extern int	g_opterr;
 extern int	g_optopt;
